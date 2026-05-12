@@ -2,49 +2,34 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Votonシンプル世界時計</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
-        .clock-container { display: flex; gap: 20px; }
-        .clock-card { border: 1px solid #ccc; padding: 15px; border-radius: 8px; min-width: 150px; }
-        .time { font-size: 1.5rem; font-weight: bold; color: #333; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voton World Clock</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>世界時計</h1>
-
-    <div class="clock-container">
-        <!-- 東京 -->
-        <div class="clock-card">
-            <div>東京 (日本)</div>
-            <div id="clock-tokyo" class="time">--:--:--</div>
+    <div class="clock-wrapper">
+        <h1>WORLD CLOCK</h1>
+        
+        <div class="selector-container">
+            <select id="city-selector">
+                <option value="Asia/Tokyo">東京 (日本)</option>
+                <option value="America/New_York">ニューヨーク (アメリカ)</option>
+                <option value="Europe/London">ロンドン (イギリス)</option>
+                <option value="Europe/Paris">パリ (フランス)</option>
+                <option value="Asia/Singapore">シンガポール</option>
+                <option value="Australia/Sydney">シドニー (オーストラリア)</option>
+                <option value="America/Los_Angeles">ロサンゼルス (アメリカ)</option>
+            </select>
         </div>
 
-        <!-- ニューヨーク -->
         <div class="clock-card">
-            <div>ニューヨーク (アメリカ)</div>
-            <div id="clock-ny" class="time">--:--:--</div>
+            <div id="city-name" class="label">TOKYO</div>
+            <div id="clock-display" class="time">00:00:00</div>
+            <div id="date-display" class="date">2024.01.01</div>
         </div>
     </div>
 
-    <script>
-        function updateClocks() {
-            const now = new Date();
-
-            // 日本時間
-            const tokyoTime = now.toLocaleTimeString('ja-JP', { timeZone: 'Asia/Tokyo' });
-            document.getElementById('clock-tokyo').textContent = tokyoTime;
-
-            // ニューヨーク時間
-            const nyTime = now.toLocaleTimeString('ja-JP', { timeZone: 'America/New_York' });
-            document.getElementById('clock-ny').textContent = nyTime;
-        }
-
-        // 1秒ごとに更新
-        setInterval(updateClocks, 1000);
-        updateClocks(); // 初回実行
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
