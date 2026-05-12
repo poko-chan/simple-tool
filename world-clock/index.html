@@ -3,31 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voton World Clock</title>
+    <title>Voton Premium Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fontsの導入 -->
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
-<body>
+<body class="dark-theme">
 
-    <div class="clock-wrapper">
-        <h1>WORLD CLOCK</h1>
-        
-        <div class="selector-container">
-            <select id="city-selector">
-                <option value="Asia/Tokyo">東京 (日本)</option>
-                <option value="America/New_York">ニューヨーク (アメリカ)</option>
-                <option value="Europe/London">ロンドン (イギリス)</option>
-                <option value="Europe/Paris">パリ (フランス)</option>
-                <option value="Asia/Singapore">シンガポール</option>
-                <option value="Australia/Sydney">シドニー (オーストラリア)</option>
-                <option value="America/Los_Angeles">ロサンゼルス (アメリカ)</option>
-            </select>
-        </div>
+    <div class="app-container">
+        <!-- サイドパネル：計算履歴 -->
+        <aside class="history-panel" id="history-panel">
+            <div class="history-header">
+                <span>HISTORY</span>
+                <button id="clear-history">Clear</button>
+            </div>
+            <ul id="history-list">
+                <!-- 履歴がここに追加される -->
+            </ul>
+        </aside>
 
-        <div class="clock-card">
-            <div id="city-name" class="label">TOKYO</div>
-            <div id="clock-display" class="time">00:00:00</div>
-            <div id="date-display" class="date">2024.01.01</div>
-        </div>
+        <!-- メイン電卓 -->
+        <main class="calculator">
+            <div class="top-bar">
+                <div class="theme-toggle">
+                    <span id="theme-label">DARK MODE</span>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="display-section">
+                <div id="prev-formula" class="formula-preview"></div>
+                <div id="main-display" class="current-input">0</div>
+            </div>
+
+            <div class="keypad">
+                <!-- 1行目 -->
+                <button class="btn btn-util" onclick="calc.clear()">AC</button>
+                <button class="btn btn-util" onclick="calc.delete()">DEL</button>
+                <button class="btn btn-util" onclick="calc.appendOperator('%')">%</button>
+                <button class="btn btn-op" onclick="calc.appendOperator('/')">÷</button>
+
+                <!-- 2行目 -->
+                <button class="btn" onclick="calc.appendNumber('7')">7</button>
+                <button class="btn" onclick="calc.appendNumber('8')">8</button>
+                <button class="btn" onclick="calc.appendNumber('9')">9</button>
+                <button class="btn btn-op" onclick="calc.appendOperator('*')">×</button>
+
+                <!-- 3行目 -->
+                <button class="btn" onclick="calc.appendNumber('4')">4</button>
+                <button class="btn" onclick="calc.appendNumber('5')">5</button>
+                <button class="btn" onclick="calc.appendNumber('6')">6</button>
+                <button class="btn btn-op" onclick="calc.appendOperator('-')">-</button>
+
+                <!-- 4行目 -->
+                <button class="btn" onclick="calc.appendNumber('1')">1</button>
+                <button class="btn" onclick="calc.appendNumber('2')">2</button>
+                <button class="btn" onclick="calc.appendNumber('3')">3</button>
+                <button class="btn btn-op" onclick="calc.appendOperator('+')">+</button>
+
+                <!-- 5行目 -->
+                <button class="btn btn-zero" onclick="calc.appendNumber('0')">0</button>
+                <button class="btn" onclick="calc.appendNumber('.')">.</button>
+                <button class="btn btn-equal" onclick="calc.compute()">=</button>
+            </div>
+        </main>
     </div>
 
     <script src="script.js"></script>
